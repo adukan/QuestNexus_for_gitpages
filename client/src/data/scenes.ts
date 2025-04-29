@@ -1,0 +1,764 @@
+const scenes = [
+  // STORY SCENES
+  {
+    id: "lightning-thief-intro",
+    type: "story",
+    title: "The Lightning Thief - Chapter 1",
+    questId: 1,
+    panels: [
+      {
+        imageDescription: "Camp Half-Blood entrance with Chiron greeting new campers",
+        imageName: "camp_half_blood_entrance",
+        dialogue: "Welcome to Camp Half-Blood, a safe haven for demigods like yourself. I am Chiron, activities director here at camp.",
+        narration: "Chiron, a centaur with a kind face, approaches you as you cross the camp boundary."
+      },
+      {
+        imageDescription: "Thunder crackling in the sky above Camp Half-Blood",
+        imageName: "thunderstorm",
+        dialogue: "I'm afraid you've arrived at a troubled time. Zeus's master lightning bolt has been stolen, and he blames Poseidon's offspring. War among the gods is brewing.",
+        narration: "Thunder rumbles ominously in the distance, despite the clear sky."
+      }
+    ],
+    nextScene: "lightning-thief-quest-announcement"
+  },
+  {
+    id: "lightning-thief-quest-announcement",
+    type: "story",
+    title: "The Lightning Thief - The Quest",
+    questId: 1,
+    panels: [
+      {
+        imageDescription: "Campers gathered around campfire, with Chiron standing before them",
+        imageName: "campfire_gathering",
+        dialogue: "Young heroes, we need a brave volunteer to undertake a quest to find the lightning bolt and return it to Zeus before the summer solstice.",
+        narration: "The flames of the campfire seem to grow higher as Chiron speaks, casting long shadows across the faces of the gathered demigods."
+      },
+      {
+        imageDescription: "Close up of the player character looking determined",
+        imageName: "player_determined",
+        dialogue: "I'll accept this quest. The peace between the gods must be preserved. Maybe I'll also find my mother along the way!",
+        narration: "Your fellow campers look at you with a mixture of relief and concern. This is a dangerous mission, but someone has to do it."
+      },
+      {
+        imageDescription: "Grover, Percy and Annabeth will also join the quest",
+        imageName: "adventure_together",
+        dialogue: "We will come with you! Together, we shall find the lightning bolt.",
+        narration: "You are relieved to have Grover, Percy and Annabeth by your side. Going alone would be too dangerous."
+      },
+      {
+        imageDescription: "Chiron smiling with pride at the player",
+        imageName: "chiron_proud",
+        dialogue: "Very well. You should consult the Oracle before you leave. She resides in the attic of the Big House.",
+        narration: "Chiron places a hand on your shoulder, his eyes conveying both pride and worry."
+      },
+      {
+        imageDescription: "Alex and friends starting off on the quest",
+        imageName: "four_friends",
+        dialogue: "",
+        narration: "Alex, Annabeth, Grover, and Percy are ready to embark on their quest. They stand under Thalia's tree, ready for whatever adventures await them."
+      },
+    ],
+    nextScene: "oracle-riddle"
+  },
+  
+  // PUZZLE SCENE
+  {
+    id: "oracle-riddle",
+    type: "puzzle",
+    title: "The Oracle's Riddle",
+    questId: 1,
+    imageDescription: "The Oracle of Delphi shrouded in mysterious green mist",
+    imageName: "oracle_delphi",
+    riddle: "I rule a realm where no sun shines, \nWhere rivers whisper ancient lines. \nThe living fear my shadowed call — \nYet in my kingdom, all must fall.\nWho am I?",
+    hint: "My crown is unseen, my throne is below. I am the god of fear and sorrow.",
+    correctAnswer: "hades",
+    successMessage: "The Oracle nods approvingly. 'Seek Hades and you shall find the thunderbolt.'",
+    failureMessage: "The Oracle frowns. 'Perhaps another path would serve you better...'",
+    successScene: "journey-west-decision",
+    failureScene: "journey-west-decision"
+  },
+
+  
+  
+  // DECISION SCENE
+  {
+    id: "journey-west-decision",
+    type: "decision",
+    title: "A Fateful Decision",
+    questId: 1,
+    imageDescription: "A crossroads with Annabeth pointing to different paths",
+    imageName: "crossroads",
+    dialogue: "We need to find the entrance to the Underworld. There are two possible routes from here.",
+    narration: "She points to a dark tunnel on your left and a dangerous mountain path on your right.",
+    followupDialogue: "Which way should we go? We don't have time to try both.",
+    choices: [
+      {
+        id: "tunnel",
+        title: "Take the Dark Tunnel",
+        description: "It looks treacherous, but might be a direct route to the Underworld. Grover mentions detecting strange scents down there.",
+        hint: "You sense this path will test your puzzle-solving abilities.",
+        nextScene: "tunnel-riddle"
+      },
+      {
+        id: "mountain",
+        title: "Climb the Mountain Path",
+        description: "It's exposed and dangerous, but Annabeth thinks she remembers this route from old legends. It might lead to a back entrance.",
+        hint: "This path likely involves combat with creatures guarding the way.",
+        nextScene: "moutain-path"
+      }
+    ],
+    defaultNextScene: "tunnel-riddle"
+  },
+
+  // STORY SCENE
+  {
+    id: "mountain-path",
+    type: "story",
+    title: "The Mountain Path",
+    questId: 1,
+    panels: [
+      {
+        imageDescription: "Alex and friends walking up a treacherous mountain path",
+        imageName: "treacherous_path",
+        dialogue: "",
+        narration: "As you climb the mountain, the path becomes increasingly steep and treacherous. The air grows thin, and the temperature drops."
+      },
+      {
+        imageDescription: "There is no other way but to enter a dark labyrinth",
+        imageName: "dark_labyrinth",
+        dialogue: "We have to go through here! We dont have time to trace back and find an alternate path.",
+        narration: "You realize that there is no other way but to enter the dark labyrinth. You carefully make your way through the dark tunnels."
+      },
+      {
+        imageDescription: "Alex and friends finding their way through a dark tunnel",
+        imageName: "dark_tunnel",
+        dialogue: "Do you hear that!? What are we heading into?",
+        narration: "A low but ominous growling sound echoes through the tunnel. You can feel the tension in the air."
+      },
+    ],
+    nextScene: "minotaur-battle"
+  },
+  // ANOTHER PUZZLE
+  {
+    id: "tunnel-riddle",
+    type: "puzzle",
+    title: "The Guardian's Test",
+    questId: 1,
+    imageDescription: "A stone door with ancient Greek inscriptions glowing faintly",
+    imageName: "stone_door",
+    riddle: "To pass this gate of ancient stone,\nThree words you seek, but speak as one.\nFirst, what falls but never breaks?\nSecond, what breaks but never falls?\nThird, what's always old but newly born each day?",
+    hint: "Think of things in nature that follow these patterns.",
+    correctAnswer: "night day dawn",
+    successMessage: "The door rumbles and slides open, revealing a passage deeper into the mountain.",
+    failureMessage: "The door remains shut, and you hear distant growling from behind you...",
+    successScene: "underworld-entrance",
+    failureScene: "minotaur-battle"
+  },
+  
+  // BATTLE SCENE
+  {
+    id: "minotaur-battle",
+    type: "battle",
+    title: "Battle with the Minotaur",
+    questId: 1,
+    imageDescription: "The Minotaur appears, blocking your path in a dark labyrinth",
+    imageName: "minotaur_appearance",
+    introText: "The ground shakes as the Minotaur emerges from the shadows. Its massive form blocks your path, and there's no way around it. You must fight!",
+    enemy: {
+      name: "Minotaur",
+      level: 3,
+      health: 100,
+      baseDamage: 15,
+      initialRage: 20,
+      description: "A fearsome creature with the head of a bull and the body of a man. It's incredibly strong but not very agile."
+    },
+    victoryImageDescription: "Victory scene with defeated Minotaur",
+    victoryImageName: "minotaur_victory",
+    victoryText: "You've defeated the Minotaur! As it crumbles to dust, you notice something gleaming on the ground.",
+    defeatImageDescription: "The player being knocked down by the Minotaur",
+    defeatImageName: "minotaur_defeat",
+    defeatText: "The Minotaur overpowers you, but Annabeth creates a diversion allowing you to escape. You've lost valuable time and resources.",
+    rewards: {
+      drachmas: 5,
+      xp: 50,
+      items: [
+        {
+          id: "minotaur-horn",
+          name: "Minotaur Horn",
+          description: "A trophy from your victory over the Minotaur. Perhaps it has some use?",
+          type: "collectible"
+        }
+      ]
+    },
+    victoryScene: "underworld-entrance",
+    defeatScene: "recovery-camp"
+  },
+  
+  // STORY SCENE
+  {
+    id: "underworld-entrance",
+    type: "story",
+    title: "The Gates of the Underworld",
+    questId: 1,
+    panels: [
+      {
+        imageDescription: "A dark cavern entrance with ghostly wisps of fog flowing outward",
+        imageName: "underworld_entrance",
+        dialogue: "This is it - the entrance to the Underworld. Hades will know who took the lightning bolt.",
+        narration: "The air feels unnaturally cold, and a sense of dread washes over you as you approach the entrance."
+      },
+      {
+        imageDescription: "Charon the ferryman waiting by the River Styx",
+        imageName: "charon_ferryman",
+        dialogue: "The living do not cross these waters without payment. Each soul must pay one coin to the ferryman.",
+        narration: "Charon eyes your group expectantly, his skeletal hand outstretched."
+      }
+    ],
+    nextScene: "hades-confrontation"
+  },
+  
+  // DECISION SCENE
+  {
+    id: "hades-confrontation",
+    type: "decision",
+    title: "Confronting the Lord of the Dead",
+    questId: 1,
+    imageDescription: "Hades on his throne of bones, surrounded by darkness and blue flames",
+    imageName: "hades_throne",
+    dialogue: "So, the children of the Olympians come to accuse me of theft? Why would I want war? I have enough subjects already.",
+    narration: "Hades' voice echoes throughout the cavernous throne room, causing small rocks to crumble from the ceiling.",
+    followupDialogue: "But since you're here, perhaps we can make a deal. Your mother's soul for information about the bolt.",
+    choices: [
+      {
+        id: "accept-deal",
+        title: "Accept Hades' Deal",
+        description: "Know who stole the thunderbolt in exchange for your mother's freedom. Hades claims he knows who the real thief is.",
+        hint: "This path prioritizes the greater mission over family.",
+        nextScene: "betrayal-revealed"
+      },
+      {
+        id: "refuse-deal",
+        title: "Refuse the Deal",
+        description: "Family is important. But, war between the gods would cause countless deaths. There must be another way.",
+        hint: "Standing firm might reveal more about the situation.",
+        nextScene: "helmet-discovery"
+      }
+    ],
+    defaultNextScene: "betrayal-revealed"
+  },
+  
+  // Story scene for recovery at camp (failure path)
+  {
+    id: "recovery-camp",
+    type: "story",
+    title: "Recovery at Camp",
+    questId: 1,
+    panels: [
+      {
+        imageDescription: "The infirmary at Camp Half-Blood with the player resting in bed",
+        imageName: "camp_infirmary",
+        dialogue: "You were lucky to escape with your lives. The Minotaur is one of the most dangerous creatures in Greek mythology.",
+        narration: "Chiron tends to your wounds while explaining that you'll need to rest before trying again."
+      },
+      {
+        imageDescription: "Annabeth showing a map with an alternative route",
+        imageName: "annabeth_map",
+        dialogue: "I've been studying the maps. There's another way we can try to reach the Underworld, but we'll need to move quickly.",
+        narration: "The deadline of the summer solstice is drawing closer. You don't have much time left."
+      }
+    ],
+    nextScene: "underworld-entrance"
+  },
+  
+  // More scenes would be defined for the rest of the quest...
+  {
+    id: "helmet-discovery",
+    type: "story",
+    title: "A Hidden Truth",
+    questId: 1,
+    panels: [
+      {
+        imageDescription: "Hades looking surprised as he searches his throne area",
+        imageName: "hades_surprised",
+        dialogue: "My helm of darkness! It's gone! I've been robbed as well!",
+        narration: "Hades' face contorts with rage as blue flames erupt around him."
+      },
+      {
+        imageDescription: "The player and friends backing away from the angry god",
+        imageName: "friends_backing_away",
+        dialogue: "Someone has stolen from both Zeus and me. Find my helm along with the bolt, and I will release your mother.",
+        narration: "You realize there's a bigger conspiracy at work than you initially thought."
+      },
+      {
+        imageDescription: "Alex and friends are out of the underworld",
+        imageName: "out_of_the_underworld",
+        dialogue: "We have to figure out who's stolen the thunderbolt. It's best if we consult the god of theivery, Hermes. They say he spends most of his time in the cursed Lotus Casino.",
+        narration: "You barely manage to survive your encounter with Hades. Though you escaped the underworld you still dont know who stole the lightening bolt!"
+      },
+      {
+        imageDescription: "Alex and friends arrive at the Lotus Casino",
+        imageName: "lotus_casino",
+        dialogue: "Hermes has to be somewhere here. I've heard he likes to play poker with mortals.",
+        narration: "The Lotus Casino is bustling with activity. You can hear the clinking of coins and the laughter of gamblers."
+      },
+      {
+        imageDescription: "Hermes is found playing poker",
+        imageName: "hermes_poker",
+        dialogue: "Welcome demigods! Any of you played poker before?",
+        narration: "You realize Hermes is going to be a hard nut to crack but you dont have any other options."
+      }
+    ],
+    nextScene: "hermes-deal"
+  },
+  // PUZZLE SCENE
+  {
+    id: "hermes-deal",
+    type: "puzzle",
+    title: "The Guardian's Test",
+    questId: 1,
+    imageDescription: "Hermes riddles the four friends",
+    imageName: "hermes-closeup",
+    riddle: "I move without legs,\nI steal without hands,\nI whisper through walls,\nYet no door can withstand. \nWhat am I?",
+    hint: "You can't catch me, but you can hear me.",
+    correctAnswer: "wind",
+    successMessage: "Hermes sighs and gives a slight chuckle,\"You got that right!\" he says.",
+    failureMessage: "Hermes looks at you with a mischeavious grin. \"Too bad, you got that wrong! How about I give you another deal?\"",
+    successScene: "hermes-reveals-thief",
+    failureScene: "hermes-asks-for-horn"
+  },
+
+  // STORY SCENE
+  {
+    id: "hermes-reveals-thief",
+    type: "story",
+    title: "The True Thief",
+    questId: 1,
+    panels: [
+      {
+        imageDescription: "Hermes reveals the thief",
+        imageName: "hermes_reveals_thief",
+        dialogue: "Ah! Though I dont want to, I will have to tell you. \nIt was my son, Luke. You can find him on the Montauk beach if you hurry.",
+        narration: "Hermes looks worried as he speaks. He knows that revealing this information means trouble for Luke."
+      }
+    ],
+    nextScene: "betrayal-revealed"
+  },
+
+  // DECISION SCENE
+  {
+    id: "hermes-asks-for-horn",
+    type: "decision",
+    title: "Hermes asks for the Minotaur horn.",
+    questId: 1,
+    imageDescription: "Hermes throws a curve-ball, he ask for the Minotaur horn!",
+    imageName: "hermes_horn",
+    dialogue: "I will give you one more chance, bring me a Minotaur horn and I'll tell you who stole the thunderbolt.",
+    narration: "Hermes drives a hard bargain. No horn, no answer!",
+    followupDialogue: "If you dont have it, go get it!",
+    choices: [
+      {
+        id: "accept-deal",
+        title: "I have the Minotaur horn!",
+        description: "Know who stole the thunderbolt in exchange for Minotaur's horn.",
+        hint: "You would have collected it after your battle with the Minotaur.",
+        nextScene: "hermes-reveals-thief"
+      },
+      {
+        id: "refuse-deal",
+        title: "I do not have the Minotaur horn.",
+        description: "Aah! Right when you thought he will tell you.",
+        hint: "You dont have it! Fight the Minotaur, get the horn.",
+        nextScene: "minotaur-battle"
+      }
+    ],
+    defaultNextScene: "betrayal-revealed"
+  },
+  
+  // STORY SCENE
+  {
+    id: "betrayal-revealed",
+    type: "story",
+    title: "The True Thief",
+    questId: 1,
+    panels: [
+      {
+        imageDescription: "Luke standing on a beach with a lightning bolt in hand",
+        imageName: "luke_betrayal",
+        dialogue: "I see you've made it out of the Underworld. Impressive for a novice.",
+        narration: "Luke, son of Hermes, stands before you with a familiar gleam in his hand - Zeus's lightning bolt."
+      },
+      {
+        imageDescription: "Close-up of Luke's face with a scar and bitter expression",
+        imageName: "luke_closeup",
+        dialogue: "The gods have ruled for too long. It's time for a new age. Kronos is rising, and I serve him now.",
+        narration: "You suddenly understand that Luke was the thief all along, working to start a war between the gods."
+      },
+      {
+        imageDescription: "Luke summoning monsters from the ground",
+        imageName: "luke_summoning",
+        dialogue: "I can't let you return that bolt to Olympus. Sorry, old friend.",
+        narration: "Luke raises his hand, and the ground begins to shake as monsters emerge."
+      }
+    ],
+    nextScene: "beach-battle"
+  },
+  
+  {
+    id: "beach-battle",
+    type: "battle",
+    title: "Battle at the Beach",
+    questId: 1,
+    imageDescription: "Monsters flooding the beach",
+    imageName: "beach_battle_start",
+    introText: "Luke summons scorpion-like monsters to attack you while he escapes. You must defeat them to recover the bolt!",
+    enemy: {
+      name: "Pit Scorpion",
+      level: 4,
+      health: 120,
+      baseDamage: 20,
+      initialRage: 10,
+      description: "A deadly creature from the depths of Tartarus. Its sting contains venom that can kill even a demigod."
+    },
+    victoryImageDescription: "The player holding the recovered lightning bolt triumphantly",
+    victoryImageName: "victory_lightning_bolt",
+    victoryText: "You've defeated the monsters! Luke has fled, but dropped the lightning bolt in his haste. The quest is nearly complete - you must return to Olympus!",
+    defeatImageDescription: "The player collapsed on the sand as the scorpion looms over them",
+    defeatImageName: "defeat_scorpion",
+    defeatText: "The venom courses through your veins, but Annabeth manages to use some emergency nectar to save you. Luke has escaped with the bolt.",
+    rewards: {
+      drachmas: 10,
+      xp: 100,
+      items: [
+        {
+          id: "lightning-bolt",
+          name: "Master Lightning Bolt",
+          description: "Zeus's symbol of power. It crackles with immense energy.",
+          type: "quest-item"
+        }
+      ]
+    },
+    victoryScene: "olympus-return",
+    defeatScene: ""
+  },
+  
+  {
+    id: "olympus-return",
+    type: "story",
+    title: "Return to Olympus",
+    questId: 1,
+    panels: [
+      {
+        imageDescription: "The player ascending to Mount Olympus through magical elevator",
+        imageName: "olympus_elevator",
+        dialogue: "It's the summer solstice. We've made it just in time.",
+        narration: "The magical elevator in the Empire State Building rises to the 600th floor, taking you to Mount Olympus."
+      },
+      {
+        imageDescription: "The grand throne room of the gods with Zeus sitting on his central throne",
+        imageName: "zeus_throne",
+        dialogue: "So, young demigod, you claim my brother's son is innocent of the theft?",
+        narration: "Zeus's voice booms throughout the hall as all the Olympian gods watch you intently."
+      },
+      {
+        imageDescription: "The player kneeling before Zeus and presenting the lightning bolt",
+        imageName: "player_kneeling",
+        dialogue: "It was Luke, son of Hermes, who stole both your bolt and Hades' helm. He serves Kronos now.",
+        narration: "A murmur runs through the gods as you mention the name of the fallen Titan lord."
+      },
+      {
+        imageDescription: "Zeus raising the bolt, causing thunder to boom across the sky",
+        imageName: "zeus_lightning",
+        dialogue: "You have done Olympus a great service. For now, at least, war is averted.",
+        narration: "Zeus accepts the bolt, and electricity courses through the air as he reclaims his symbol of power."
+      }
+    ],
+    nextScene: "end"
+  },
+  
+    // STORY - Arriving at Camp Half-Blood after attack
+    {
+      id: "sea-of-monsters-intro",
+      type: "story",
+      title: "The Sea of Monsters - Camp Under Siege",
+      questId: 2,
+      panels: [
+        {
+          imageDescription: "Camp Half-Blood borders smoldering, smoke in the air",
+          dialogue: "Camp's magical borders have been broken. Something terrible is happening.",
+          narration: "You rush to Camp Half-Blood only to find chaos and destruction. Trees are burning and satyrs are injured."
+        },
+        {
+          imageDescription: "Colchis Bull stomping into the clearing with fire trailing its steps",
+          dialogue: "It’s a Colchis Bull! Everyone get back!",
+          narration: "The ground shakes as the massive metal creature charges through, flames licking its bronze hide."
+        }
+      ],
+      nextScene: "colchis-bull-battle"
+    },
+
+    // BATTLE - Colchis Bull
+    {
+      id: "colchis-bull-battle",
+      type: "battle",
+      title: "Battle with the Colchis Bull",
+      questId: 2,
+      imageDescription: "The Colchis Bull breathing fire as campers prepare to fight",
+      introText: "The Colchis Bull is tearing through Camp! You must help stop it before it destroys everything!",
+      enemy: {
+        name: "Colchis Bull",
+        level: 4,
+        health: 120,
+        baseDamage: 25,
+        initialRage: 30,
+        description: "A fire-breathing mechanical bull crafted by Hephaestus. Extremely tough and dangerous."
+      },
+      victoryImageDescription: "The bull crumbling into molten metal",
+      victoryText: "You've defeated the Colchis Bull! The camp is saved, but the damage is great.",
+      defeatImageDescription: "The bull knocks the player back, fire everywhere",
+      defeatText: "You’re overwhelmed, but Tyson jumps in to save you at the last second. The bull retreats.",
+      rewards: {
+        drachmas: 10,
+        xp: 70,
+        items: [
+          {
+            id: "bull-gear",
+            name: "Molten Bull Gear",
+            description: "Still warm from the Colchis Bull's body. Could be useful later.",
+            type: "collectible"
+          }
+        ]
+      },
+      victoryScene: "chiron-explains-fleece",
+      defeatScene: "chiron-explains-fleece"
+    },
+
+    // STORY - Chiron explains about the Fleece
+    {
+      id: "chiron-explains-fleece",
+      type: "story",
+      title: "The Golden Fleece",
+      questId: 2,
+      panels: [
+        {
+          imageDescription: "Campers gathered around Chiron in the Big House",
+          dialogue: "The borders failed because Thalia’s tree is dying. Only the Golden Fleece can save it.",
+          narration: "Chiron’s voice is grim. You’ve never seen him so worried."
+        },
+        {
+          imageDescription: "Map showing the Sea of Monsters",
+          dialogue: "The Fleece is located on Polyphemus’s island in the Sea of Monsters. You must retrieve it.",
+          narration: "The quest is dangerous, but necessary. If the Fleece isn’t recovered, the camp is doomed."
+        }
+      ],
+      nextScene: "ship-departure"
+    },
+
+    // STORY - Setting out on the Quest
+    {
+      id: "ship-departure",
+      type: "story",
+      title: "Journey Begins",
+      questId: 2,
+      panels: [
+        {
+          imageDescription: "The Princess Andromeda ship at sea",
+          dialogue: "This ship belongs to Luke. Be careful. He’s up to something.",
+          narration: "The journey begins, but trouble is already brewing beneath the surface."
+        }
+      ],
+      nextScene: "sirens-choice"
+    },
+
+    // DECISION - Sirens or Hydra
+    {
+      id: "sirens-choice",
+      type: "decision",
+      title: "A Fork in the Ocean",
+      questId: 2,
+      imageDescription: "The ocean ahead splitting into two currents",
+      dialogue: "One way leads past the Sirens. The other past the Hydra.",
+      narration: "Annabeth and Tyson argue over which path is safer.",
+      followupDialogue: "You must choose quickly. The currents are strong.",
+      choices: [
+        {
+          id: "sirens",
+          title: "Face the Sirens",
+          description: "Temptation lies ahead. But so might knowledge.",
+          hint: "Puzzle-focused path.",
+          nextScene: "sirens-riddle"
+        },
+        {
+          id: "hydra",
+          title: "Face the Hydra",
+          description: "A deadly multi-headed beast awaits.",
+          hint: "Combat-focused path.",
+          nextScene: "hydra-battle"
+        }
+      ],
+      defaultNextScene: "sirens-riddle"
+    },
+
+    // PUZZLE - Sirens Riddle
+    {
+      id: "sirens-riddle",
+      type: "puzzle",
+      title: "Lure of the Sirens",
+      questId: 2,
+      imageDescription: "Beautiful Sirens singing on rocky shores",
+      riddle: "I whisper truths, reveal your fate,\nBut listen close and risk the gate.\nWhat am I?",
+      hint: "Temptation can be dangerous.",
+      correctAnswer: "sirensong",
+      successMessage: "You resist their call and uncover a clue to Polyphemus’s lair.",
+      failureMessage: "You almost drown but are rescued in time. You lose precious time.",
+      successScene: "approach-island",
+      failureScene: "approach-island"
+    },
+
+    // BATTLE - Hydra
+    {
+      id: "hydra-battle",
+      type: "battle",
+      title: "Hydra Battle",
+      questId: 2,
+      imageDescription: "The Hydra rising from the sea with many heads",
+      introText: "A monstrous Hydra blocks your path. Every head you cut grows back two more!",
+      enemy: {
+        name: "Hydra",
+        level: 5,
+        health: 140,
+        baseDamage: 18,
+        initialRage: 25,
+        description: "A regenerating sea monster. It requires strategy to defeat."
+      },
+      victoryImageDescription: "Hydra collapsing into the sea",
+      victoryText: "The Hydra sinks beneath the waves. You move on toward the island.",
+      defeatImageDescription: "Player caught by Hydra tendrils",
+      defeatText: "You’re knocked out but saved by Tyson. You continue, shaken but alive.",
+      rewards: {
+        drachmas: 15,
+        xp: 80,
+        items: [
+          {
+            id: "hydra-scale",
+            name: "Hydra Scale",
+            description: "A rare scale from the sea beast. Magical properties unknown.",
+            type: "collectible"
+          }
+        ]
+      },
+      victoryScene: "approach-island",
+      defeatScene: "approach-island"
+    },
+
+    // STORY - Nearing Polyphemus’s Island
+    {
+      id: "approach-island",
+      type: "story",
+      title: "The Island of the Cyclops",
+      questId: 2,
+      panels: [
+        {
+          imageDescription: "The island in the distance with storm clouds above",
+          dialogue: "That’s it. Polyphemus’s island. The Fleece is in there.",
+          narration: "You feel a chill as the island looms closer. The final challenge awaits."
+        }
+      ],
+      nextScene: "polyphemus-battle"
+    },
+
+    // BATTLE - Polyphemus
+    {
+      id: "polyphemus-battle",
+      type: "battle",
+      title: "Battle with Polyphemus",
+      questId: 2,
+      imageDescription: "Polyphemus stomping through jungle, holding a tree as a club",
+      introText: "The Cyclops roars in fury. He guards the Fleece with everything he’s got.",
+      enemy: {
+        name: "Polyphemus",
+        level: 6,
+        health: 150,
+        baseDamage: 30,
+        initialRage: 20,
+        description: "A huge and cunning Cyclops. Not easy to beat with brute strength alone."
+      },
+      victoryImageDescription: "Polyphemus falling backward, stunned",
+      victoryText: "Polyphemus collapses! You snatch the Golden Fleece from its perch.",
+      defeatImageDescription: "Polyphemus roaring triumphantly with the player pinned",
+      defeatText: "You’re captured, but Grover deceives Polyphemus with a trick. You escape with the Fleece!",
+      rewards: {
+        drachmas: 20,
+        xp: 120,
+        items: [
+          {
+            id: "golden-fleece",
+            name: "Golden Fleece",
+            description: "Glows with healing energy. The only hope to save Camp Half-Blood.",
+            type: "quest-item"
+          }
+        ]
+      },
+      victoryScene: "fleece-return",
+      defeatScene: "fleece-return"
+    },
+
+    // STORY - Return with the Fleece
+    {
+      id: "fleece-return",
+      type: "story",
+      title: "Return of the Fleece",
+      questId: 2,
+      panels: [
+        {
+          imageDescription: "Thalia’s tree glowing as the Fleece is placed on it",
+          dialogue: "It’s working. The magic is restoring the tree!",
+          narration: "The air shimmers as the power of the Fleece pulses through Camp Half-Blood."
+        }
+      ],
+      nextScene: "thalia-awakens"
+    },
+
+    // STORY - Thalia Awakens
+    {
+      id: "thalia-awakens",
+      type: "story",
+      title: "Daughter of Zeus",
+      questId: 2,
+      panels: [
+        {
+          imageDescription: "A bolt of lightning striking the tree",
+          dialogue: "What just happened?!",
+          narration: "A shape steps out of the lightning. It’s a girl about your age with fierce eyes."
+        },
+        {
+          imageDescription: "Thalia standing tall under the branches",
+          dialogue: "I’m... Thalia. What year is it?",
+          narration: "Zeus’s daughter, once turned into a tree, has returned. The prophecy just changed."
+        }
+      ],
+      nextScene: "titan-curse-tease"
+    },
+
+    // CLIFFHANGER - Tease Titan's Curse
+    {
+      id: "titan-curse-tease",
+      type: "story",
+      title: "A New Prophecy",
+      questId: 2,
+      panels: [
+        {
+          imageDescription: "Oracle’s eyes glowing green",
+          dialogue: "The prophecy has shifted. Two children of the Big Three now stand.",
+          narration: "The Oracle speaks cryptically. You realize the war isn’t over—it’s just beginning."
+        },
+        {
+          imageDescription: "A dark figure in the shadows holding a scythe",
+          dialogue: "Kronos stirs...",
+          narration: "Somewhere far away, the Titan Lord opens a single glowing eye."
+        }
+      ],
+      nextScene: "end"
+    }
+];
+
+export default scenes;
