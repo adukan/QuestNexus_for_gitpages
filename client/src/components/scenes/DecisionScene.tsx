@@ -37,7 +37,7 @@ export default function DecisionScene() {
       <div className="panel bg-parchment rounded-lg overflow-hidden shadow">
         <div className="h-96 w-full flex items-center justify-center bg-parchment">
           <img
-            src={`/${scene.imageName}.png`}
+            src={`../${scene.imageName}.png`}
             alt={scene.imageName}
             className="w-full h-full object-contain"
           />

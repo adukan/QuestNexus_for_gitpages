@@ -59,7 +59,7 @@ export default function StoryScene() {
         <div className="panel mb-8 bg-parchment rounded-lg overflow-hidden shadow">
           <div className="h-96 w-full flex items-center justify-center bg-parchment">
             <img
-              src={`/${currentPanelData.imageName}.png`}
+              src={`../${currentPanelData.imageName}.png`}
               alt={currentPanelData.imageName}
               className="w-full h-full object-contain"
             />

@@ -186,7 +186,7 @@ export default function BattleScene() {
           <div id="battlePanel1" className="panel bg-parchment rounded-lg overflow-hidden shadow mb-6">
             <div className="h-96 w-full flex items-center justify-center bg-parchment">
               <img
-                src={`/${scene.imageName}.png`}
+                src={`../${scene.imageName}.png`}
                 alt={scene.imageName}
                 className="w-full h-full object-contain"
               />
@@ -219,7 +219,7 @@ export default function BattleScene() {
                 </div>
                 <div className="h-48 w-full flex items-center justify-center bg-stone-100">
                   <img
-                    src={`/${scene.imageName}.png`}
+                    src={`../${scene.imageName}.png`}
                     alt={scene.imageName}
                     className="w-full h-full object-contain"
                   />
@@ -426,7 +426,7 @@ export default function BattleScene() {
           <div id="battlePanel3" className="panel bg-parchment rounded-lg overflow-hidden shadow mt-6">
             <div className="h-96 w-full flex items-center justify-center bg-parchment">
               <img
-                src={battleResult === "victory" ? `/${scene.victoryImageName}.png` : `/${scene.defeatImageName}.png`}
+                src={battleResult === "victory" ? `../${scene.victoryImageName}.png` : `../${scene.defeatImageName}.png`}
                 alt={scene.imageName}
                 className="w-full h-full object-contain"
               />
