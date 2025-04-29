@@ -6,7 +6,7 @@ import runtimeErrorOverlay from "@replit/vite-plugin-runtime-error-modal";
 
 // GitHub Pages uses the repository name as the base path
 // Replace 'questnexus' with your actual repository name
-const BASE_PATH = process.env.NODE_ENV === 'production' ? '/QuestNexus/' : '/';
+const BASE_PATH = process.env.NODE_ENV === 'production' ? '/QuestNexus_for_gitpages/' : '/';
 
 export default defineConfig({
   plugins: [
